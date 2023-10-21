@@ -1,36 +1,24 @@
 package com.andrewchokh.banksystem.entities;
 
-import com.andrewchokh.banksystem.entities.enums.Currency;
-
 import java.util.ArrayList;
 
 public class Account {
-    private final int id;
-    private final String firstName;
-    private final String lastName;
+    private final User owner;
     private final String login;
     private final String password;
-    private final ArrayList<DebitCard> cards;
 
-    Account(int id, String firstName, String lastName, String login, String password, ArrayList<DebitCard> cards) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private final Balance balance;
+
+    Account(User owner, String login, String password) {
+        this.owner = owner;
         this.login = login;
         this.password = password;
-        this.cards = cards;
+        this.balance = new Balance();
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public User getOwner() {
+        return owner;
     }
 
     public String getLogin() {
@@ -41,11 +29,11 @@ public class Account {
         return password;
     }
 
-    public ArrayList<DebitCard> getCards() {
-        return cards;
+    public Balance getBalance() {
+        return balance;
     }
 
-    static class Balance {
+    public static class Balance {
         private int UAHBalance;
         private int EURBalance;
         private int USDBalance;
