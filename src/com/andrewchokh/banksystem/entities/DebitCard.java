@@ -9,7 +9,7 @@ public class DebitCard {
     private final String validUntilDate;
     private final String secretCode;
 
-    DebitCard(User owner, Account account, String number, String validUntilDate, String secretCode) {
+    public DebitCard(User owner, Account account, String number, String validUntilDate, String secretCode) {
         this.owner = owner;
         this.account = account;
         this.number = number;
@@ -37,7 +37,7 @@ public class DebitCard {
         return account;
     }
 
-    public void replenishBalance(int amount, Currency currency) {
+    public void replenishBalance(float amount, Currency currency) {
         if (amount <= 0) throw new RuntimeException("Amount must be natural number");
 
         Account.Balance balance = account.getBalance();
@@ -49,7 +49,7 @@ public class DebitCard {
         }
     }
 
-    public void withdrawBalance(int amount, Currency currency) {
+    public void withdrawBalance(float amount, Currency currency) {
         if (amount <= 0) throw new RuntimeException("Amount must be natural number");
 
         Account.Balance balance = account.getBalance();

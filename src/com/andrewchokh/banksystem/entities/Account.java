@@ -1,7 +1,5 @@
 package com.andrewchokh.banksystem.entities;
 
-import java.util.ArrayList;
-
 public class Account {
     private final User owner;
     private final String login;
@@ -9,13 +7,12 @@ public class Account {
 
     private final Balance balance;
 
-    Account(User owner, String login, String password) {
+    public Account(User owner, String login, String password) {
         this.owner = owner;
         this.login = login;
         this.password = password;
         this.balance = new Balance();
     }
-
 
     public User getOwner() {
         return owner;
@@ -34,9 +31,9 @@ public class Account {
     }
 
     public static class Balance {
-        private int UAHBalance;
-        private int EURBalance;
-        private int USDBalance;
+        private float UAHBalance;
+        private float EURBalance;
+        private float USDBalance;
 
         Balance() {
             this.UAHBalance = 0;
@@ -44,27 +41,27 @@ public class Account {
             this.USDBalance = 0;
         }
 
-        public void setUAHBalance(int UAHBalance) {
+        public void setUAHBalance(float UAHBalance) {
             this.UAHBalance = UAHBalance;
         }
 
-        public void setEURBalance(int EURBalance) {
+        public void setEURBalance(float EURBalance) {
             this.EURBalance = EURBalance;
         }
 
-        public void setUSDBalance(int USDBalance) {
+        public void setUSDBalance(float USDBalance) {
             this.USDBalance = USDBalance;
         }
 
-        public int getUAHBalance() {
+        public float getUAHBalance() {
             return UAHBalance;
         }
 
-        public int getEURBalance() {
+        public float getEURBalance() {
             return EURBalance;
         }
 
-        public int getUSDBalance() {
+        public float getUSDBalance() {
             return USDBalance;
         }
     }

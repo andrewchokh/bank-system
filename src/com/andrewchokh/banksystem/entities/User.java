@@ -17,7 +17,7 @@ public class User {
         this.cards = new ArrayList<>();
     }
 
-    User(String firstName, String lastName, Account userAccount, List<DebitCard> cards) {
+    public User(String firstName, String lastName, Account userAccount, List<DebitCard> cards) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userAccount = userAccount;
@@ -40,22 +40,24 @@ public class User {
         return cards;
     }
 
-    public void CreateAccount(String login, String password) {
-        userAccount = new Account(this, login, password);
+    public String getFullName() {
+        return "%s %s".formatted(firstName, lastName);
     }
 
-    public void AddCard(Account account, String number, String validUntilDate, String secretCode) {
-        cards.add(new DebitCard(this, account, number, validUntilDate, secretCode));
+    public void AddCard(DebitCard card) {
+        cards.add(card);
+    }
+
+    public void setUserAccount(Account account) {
+        userAccount = account;
     }
 
     public void Authorize(String login, String password) {
-        if (userAccount == null) CreateAccount(login, password);
-
         if (userAccount.getLogin().equals(login) && userAccount.getPassword().equals(password)) {
             System.out.printf("""
                     Full Name: %s
                     Amount of cards: %s
-                    Balance: 
+                    Balance:
                         UAH: %s
                         EUR: %s
                         USD: %s
@@ -63,6 +65,9 @@ public class User {
                     """,
                     firstName + " " + lastName, cards.size(), userAccount.getBalance().getUAHBalance(),
                     userAccount.getBalance().getEURBalance(), userAccount.getBalance().getUSDBalance());
+        }
+        else {
+            System.out.println("Incorrect login or password!");
         }
     }
 }
