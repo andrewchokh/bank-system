@@ -36,19 +36,18 @@ public class Main {
         currentUser = users.get(userChoice - 1);
 
         if (currentUser.getUserAccount() != null) {
-            String login;
-            String password;
+            in.nextLine();
 
             System.out.println("Enter login");
-            login = in.nextLine();
+            String login = in.nextLine();
 
             System.out.println("Enter password");
-            password = in.nextLine();
+            String password = in.nextLine();
 
             currentUser.Authorize(login, password);
 
-            if (login != currentUser.getUserAccount().getLogin() ||
-                    password != currentUser.getUserAccount().getPassword()) {
+            if (!login.equals(currentUser.getUserAccount().getLogin()) ||
+                    !password.equals(currentUser.getUserAccount().getPassword())) {
                 return;
             }
         }
